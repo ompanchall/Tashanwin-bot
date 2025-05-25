@@ -1,14 +1,16 @@
-# Use official Python image
+# Use the official lightweight Python image
 FROM python:3.10-slim
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Copy project files
-COPY . .
+# Copy requirements file and install dependencies
+COPY requirements.txt .
 
-# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Run the bot
+# Copy the rest of the application
+COPY . .
+
+# Command to run your bot
 CMD ["python", "bot.py"]
